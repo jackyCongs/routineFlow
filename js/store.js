@@ -1,5 +1,5 @@
 // ==== State & Storage ====
-const TASKS_KEY = 'routineFlow_tasks';
+const TASKS_KEY = 'task_manager_data';
 const HISTORY_KEY = 'routineFlow_history';
 
 export let tasks = [];
