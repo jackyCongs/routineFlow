@@ -1,16 +1,19 @@
-/* ====== Design Tokens ====== */
 :root {
-  --color-primary-h: 220;
-  --color-primary-s: 70%;
-  --color-primary-l: 50%;
-  --color-primary: hsl(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l));
-
-  --color-bg: hsl(220, 20%, 96%);
-  --color-surface: #fff;
-  --color-card: #fff;
-  --color-text: hsl(220, 15%, 20%);
-  --color-muted: hsl(220, 10%, 60%);
-  --color-border: hsl(220, 15%, 90%);
+  /* Fresh & Minimalist Pastel Blue Theme */
+  --color-primary: #7bc1e8;       /* Pastel Blue */
+  --color-primary-hover: #63aed8; /* Slightly darker pastel blue */
+  --color-bg: #f7fafc;            /* Extremely light blue-ish white */
+  --color-surface: #ffffff;
+  --color-card: #ffffff;
+  --color-text: #2d3748;          /* Soft dark slate */
+  --color-muted: #718096;         /* Soft gray */
+  --color-text-muted: #718096;    
+  --color-border: #e2e8f0;
+  --color-danger: #fc8181;        /* Pastel red */
+  
+  --shadow-sm: 0 2px 4px rgba(123, 193, 232, 0.05);
+  --shadow-md: 0 4px 6px rgba(123, 193, 232, 0.1);
+  --shadow-lg: 0 10px 15px rgba(123, 193, 232, 0.15);
   --radius: 0.875rem;
   --transition: 0.2s ease;
 }

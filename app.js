@@ -486,23 +486,14 @@ function reorderTask(id, newIndex, newParentId) {
 }
 
 // ==== Modal Control Functions ====
-function setStatusColor(color) {
-  let metaThemeColor = document.querySelector('meta[name="theme-color"]');
-  if (metaThemeColor) {
-    metaThemeColor.setAttribute('content', color);
-  }
-}
-
 function openModal() {
   const modal = document.getElementById('taskModal');
   modal.setAttribute('aria-hidden', 'false');
-  setStatusColor('#868788'); // Darkened status bar for modal overlay
 }
 
 function closeModal() {
   const modal = document.getElementById('taskModal');
   modal.setAttribute('aria-hidden', 'true');
-  setStatusColor('#f4f5f8'); // Restore original status bar color
   // Reset to add mode
   editingTaskId = null;
   document.getElementById('titleInput').value = '';
