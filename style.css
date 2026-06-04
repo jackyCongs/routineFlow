@@ -46,12 +46,9 @@ body {
 
 /* ====== Header ====== */
 header.header {
-  background: linear-gradient(135deg,
-    hsl(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l)),
-    hsl(calc(var(--color-primary-h) + 30), 65%, 55%)
-  );
-  color: #fff;
-  padding: 1.25rem 1rem;
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 1.5rem 1rem 0.5rem 1rem;
   text-align: center;
 }
 header.header h1 {
@@ -247,9 +244,9 @@ li.task-item {
 
 /* Active State: Due or one-off tasks, solid white, colored left border */
 li.task-item.active {
-  background: #ffffff;
+  background: var(--color-card);
   border-left: 4px solid var(--color-primary);
-  box-shadow: 0 6px 16px rgba(var(--color-primary-h), 50%, 50%, 0.12);
+  box-shadow: 0 6px 16px rgba(123, 193, 232, 0.25);
   transform: translateY(-1px);
 }
 
