@@ -2,7 +2,7 @@
   /* Fresh & Minimalist Pastel Blue Theme */
   --color-primary: #7bc1e8;       /* Pastel Blue */
   --color-primary-hover: #63aed8; /* Slightly darker pastel blue */
-  --color-bg: #f7fafc;            /* Extremely light blue-ish white */
+  --color-bg: #edf2f7;            /* Slightly deeper cool gray to make white cards pop */
   --color-surface: #ffffff;
   --color-card: #ffffff;
   --color-text: #2d3748;          /* Soft dark slate */
@@ -232,10 +232,11 @@ ul.task-root {
 /* ====== Task Card ====== */
 li.task-item {
   background: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   margin-bottom: 0.6rem;
   padding: 0.875rem 1rem;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
   transition: all var(--transition);
   -webkit-user-select: none;
   user-select: none;
