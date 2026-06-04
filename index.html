@@ -8,6 +8,12 @@
     <meta name="description" content="A local web app for creating, organizing, and repeating tasks. Features a modern UI designed for focus and productivity." />
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- PWA & Add to Home Screen -->
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
     <link rel="stylesheet" href="style.css" />
     <!-- SortableJS for drag-and-drop ordering -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
@@ -78,6 +84,19 @@
         <section class="task-list" id="taskList">
             <!-- Task list will be dynamically rendered by JavaScript -->
         </section>
+        
+        <!-- Add to Home Screen Prompt -->
+        <div id="a2hsPrompt" class="a2hs-prompt" aria-hidden="true">
+          <div class="a2hs-content">
+            <button class="a2hs-close" id="a2hsClose" aria-label="Close">×</button>
+            <img src="icon.png" alt="App Icon" class="a2hs-icon" />
+            <div class="a2hs-text">
+              <h3>Install RoutineFlow</h3>
+              <p id="a2hsInstructions">Add to your home screen for a full-screen app experience.</p>
+            </div>
+            <button id="a2hsInstallBtn" class="primary" style="display: none; width: auto; padding: 0.5rem 1rem;">Install</button>
+          </div>
+        </div>
     </main>
     <script src="app.js"></script>
 </body>

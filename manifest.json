@@ -1,0 +1,16 @@
+{
+  "name": "RoutineFlow",
+  "short_name": "RoutineFlow",
+  "description": "A minimalist, modern habit tracker and task management web app.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

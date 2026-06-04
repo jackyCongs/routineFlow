@@ -661,3 +661,57 @@ populateDays();
 recycleCompletedTasks();
 renderTasks();
 checkReminders(); // run once immediately
+
+// ==== Add to Home Screen (A2HS) Logic ====
+let deferredPrompt;
+const a2hsPrompt = document.getElementById('a2hsPrompt');
+const a2hsClose = document.getElementById('a2hsClose');
+const a2hsInstallBtn = document.getElementById('a2hsInstallBtn');
+const a2hsInstructions = document.getElementById('a2hsInstructions');
+
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+}
+
+function isStandalone() {
+  return window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+}
+
+function showA2HSPrompt() {
+  if (localStorage.getItem('a2hs_dismissed')) return;
+  setTimeout(() => {
+    a2hsPrompt.setAttribute('aria-hidden', 'false');
+  }, 1500);
+}
+
+a2hsClose.addEventListener('click', () => {
+  a2hsPrompt.setAttribute('aria-hidden', 'true');
+  localStorage.setItem('a2hs_dismissed', 'true');
+});
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (!isStandalone()) {
+    a2hsInstallBtn.style.display = 'block';
+    a2hsInstructions.textContent = 'Install this app on your device for a faster, full-screen experience.';
+    showA2HSPrompt();
+  }
+});
+
+a2hsInstallBtn.addEventListener('click', async () => {
+  a2hsPrompt.setAttribute('aria-hidden', 'true');
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      localStorage.setItem('a2hs_dismissed', 'true');
+    }
+    deferredPrompt = null;
+  }
+});
+
+if (isIOS() && !isStandalone()) {
+  a2hsInstructions.innerHTML = 'To install: tap the <svg style="display:inline-block; vertical-align:middle; margin:0 4px;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> <strong>Share</strong> button, then select <strong>Add to Home Screen</strong>.';
+  showA2HSPrompt();
+}
