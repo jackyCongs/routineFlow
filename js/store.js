@@ -77,10 +77,34 @@ export function removeCompletionForToday(taskId) {
   }
 }
 
+// ==== Task Relationship Helpers ====
+export function hasChildren(taskId) {
+  return tasks.some(t => t.parentId === taskId);
+}
+
+export function allChildrenCompletedToday(taskId) {
+  const children = tasks.filter(t => t.parentId === taskId);
+  if (children.length === 0) return false;
+  return children.every(c => c.completedDate && isToday(c.completedDate));
+}
+
+export function syncParentCompletion(parentId) {
+  if (!parentId) return;
+  const parent = tasks.find(t => t.id === parentId);
+  if (!parent) return;
+  if (allChildrenCompletedToday(parentId)) {
+    parent.completedDate = new Date().toISOString();
+  } else {
+    parent.completedDate = null;
+  }
+}
+
 // ==== Date Utilities ====
 export function isToday(dateStr) {
+  if (!dateStr) return false;
+  const d = new Date(dateStr);
   const today = new Date();
-  return dateStr === formatDate(today);
+  return d.toDateString() === today.toDateString();
 }
 
 export function formatDate(date) {

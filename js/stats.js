@@ -3,8 +3,6 @@ import { history, formatDate } from './store.js';
 let chartInstance = null;
 
 export function renderStats() {
-  const container = document.getElementById('statsContainer');
-  if (!container) return;
 
   // Aggregate completion counts for the last 7 days
   const labels = [];
