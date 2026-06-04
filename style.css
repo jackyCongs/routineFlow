@@ -119,18 +119,19 @@ header.header h1 {
   color: var(--color-text);
 }
 
-.modal-content input,
+.modal-content input[type="text"],
+.modal-content input[type="time"],
 .modal-content select {
   width: 100%;
-  margin-bottom: 0.75rem;
-  padding: 0.75rem 0.875rem;
-  font-size: 0.95rem;
+  padding: 0.8rem;
   border: 1px solid var(--color-border);
-  border-radius: calc(var(--radius) * 0.6);
-  background: var(--color-bg);
+  border-radius: 12px;
+  background: #fdfdfd;
+  font-size: 16px; /* 必须是16px以防止iOS自动放大 */
   color: var(--color-text);
-  outline: none;
-  transition: border-color var(--transition);
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  -webkit-appearance: none;
 }
 .modal-content input:focus,
 .modal-content select:focus {
