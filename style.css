@@ -294,7 +294,7 @@ li.task-item.inactive {
   align-items: center;
   gap: 0.6rem;
   flex: 1;
-  min-width: 0; /* 防止文字撑开容器 */
+  min-width: 0; /* Prevent text from expanding container */
 }
 
 .task-content input[type="checkbox"] {
@@ -318,7 +318,7 @@ li.task-item.inactive {
   color: var(--color-muted);
 }
 
-/* ====== Task Actions – 固定宽度, 右对齐 ====== */
+/* ====== Task Actions - Fixed width, right aligned ====== */
 .task-actions {
   flex-shrink: 0;
   display: flex;
@@ -347,7 +347,7 @@ li.task-item.inactive {
   margin-top: 0.5rem;
 }
 
-/* 子任务卡片 – 更轻量 */
+/* Subtask Card - Lighter visual weight */
 .task-item.subtask {
   background: var(--color-bg);
   box-shadow: none;
