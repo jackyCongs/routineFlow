@@ -715,3 +715,12 @@ if (isIOS() && !isStandalone()) {
   a2hsInstructions.innerHTML = 'To install: tap the <svg style="display:inline-block; vertical-align:middle; margin:0 4px;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> <strong>Share</strong> button, then select <strong>Add to Home Screen</strong>.';
   showA2HSPrompt();
 }
+
+// ==== Fix for iOS Viewport Shift Bug ====
+document.addEventListener('focusout', (e) => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+  }
+});

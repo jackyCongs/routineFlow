@@ -26,6 +26,8 @@
 html {
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
+  background: var(--color-bg);
+  height: 100%;
 }
 body {
   width: 100vw;
