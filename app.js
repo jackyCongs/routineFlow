@@ -678,7 +678,7 @@ function isStandalone() {
 }
 
 function showA2HSPrompt() {
-  if (localStorage.getItem('a2hs_dismissed')) return;
+  if (localStorage.getItem('a2hs_dismissed_v2')) return;
   setTimeout(() => {
     a2hsPrompt.setAttribute('aria-hidden', 'false');
   }, 1500);
@@ -686,7 +686,7 @@ function showA2HSPrompt() {
 
 a2hsClose.addEventListener('click', () => {
   a2hsPrompt.setAttribute('aria-hidden', 'true');
-  localStorage.setItem('a2hs_dismissed', 'true');
+  localStorage.setItem('a2hs_dismissed_v2', 'true');
 });
 
 window.addEventListener('beforeinstallprompt', (e) => {
@@ -705,7 +705,7 @@ a2hsInstallBtn.addEventListener('click', async () => {
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
     if (outcome === 'accepted') {
-      localStorage.setItem('a2hs_dismissed', 'true');
+      localStorage.setItem('a2hs_dismissed_v2', 'true');
     }
     deferredPrompt = null;
   }
