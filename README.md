@@ -1,45 +1,45 @@
 # 🌊 RoutineFlow
 
-**RoutineFlow** 是一个颜值极高、极简且现代的移动端习惯打卡与任务管理工具。它完全基于纯前端技术（HTML/CSS/JS）构建，**数据 100% 保存在你的本地浏览器中**，无需注册登录，没有后端服务器，充分保护你的个人隐私。
+**RoutineFlow** is a minimalist, modern, and mobile-first habit tracker and task management web application. Built entirely with vanilla web technologies (HTML, CSS, JavaScript), it prioritizes user privacy by storing 100% of your data locally in your browser. No registration, no back-end servers, and no data tracking.
 
-🌐 **在线体验 / 专属地址**：[点击这里访问 (请替换为你的GitHub Pages网址)](https://jackyCongs.github.io/routineFlow/)
-
----
-
-## ✨ 核心亮点
-
-- 🎨 **高颜值现代 UI**：精心设计的毛玻璃效果、流畅的交互动画、以及智能的“激活/未激活”状态色彩提示，让你一眼就能看清当前需要专注的任务。
-- 📅 **精准的周期循环**：支持单次任务，也支持强大的周期任务。你可以精确设置：
-  - 每周的星期几重复（如：每周三）
-  - 每月的几号重复（如：每月15号）
-  - 每半年的某个月的某一天重复
-- 📁 **无缝的子任务管理**：主任务会自动转变为“目录文件夹”，支持点击折叠与展开。折叠时，它还会智能地向你汇报其内部最紧迫子任务的剩余天数（如：“子任务最近还有 2 天”）。
-- ⏳ **倒计时徽章**：对于未到期的周期性任务，系统会自动隐藏其复选框，并显示温馨的倒计时徽章（如：“距今还有 3 天”），避免制造焦虑，又防止你遗忘。
-- 🔔 **本地贴心提醒**：支持为单个任务设定具体的提醒时间（如 21:00）。配合浏览器的本地通知功能，时间一到自动弹出提醒。
-- 👆 **长按拖拽排序**：长按任意任务即可触发拖拽排序，在 Android 设备上还会触发舒适的震动反馈（Haptic feedback）。
+🌐 **Live Demo**: [https://jackycongs.github.io/routineFlow/](https://jackyCongs.github.io/routineFlow/)
 
 ---
 
-## 📱 如何使用（最佳实践）
+## ✨ Key Features
 
-这个应用采用了 **Mobile-First（移动端优先）** 的设计理念，最完美的体验方式是把它当作一个手机 App 来用：
-
-1. **第一步**：在手机的默认浏览器（iPhone 推荐 Safari，Android 推荐 Chrome）中打开上面的在线体验网址。
-2. **第二步**：点击浏览器底部的分享按钮，选择 **“添加到主屏幕”**。
-3. **第三步**：回到你的手机桌面，你会发现它就像一个真正的原生 App 一样躺在那里。点开它，享受沉浸式的、没有浏览器地址栏的打卡体验吧！
-
-### 💡 小贴士
-- 所有的任务数据都存储在你当前设备的 `localStorage` 中。如果你清理了浏览器的本地缓存数据，任务将会丢失。
-- 如果你需要更换手机，目前版本不支持云端同步（这也是为了绝对的隐私安全）。
-
----
-
-## 🛠 技术栈
-- **HTML5**: 语义化结构，本地持久化与通知 API (`Notification API`, `localStorage`)
-- **Vanilla CSS**: 原生 CSS 变量、Flexbox 布局，现代化的视觉色彩（纯手工无框架）。
-- **Vanilla JavaScript**: 原生 JS 处理 DOM 逻辑与日期算法。
-- **SortableJS**: 丝滑的拖拽排序支持。
+- 🎨 **Modern Minimalist UI**: Features a clean glassmorphism-inspired aesthetic, fluid CSS transitions, and smart color-coded states to help you focus on active tasks instantly.
+- 📅 **Advanced Recurrence Engine**: Supports both one-off tasks and complex recurring habits. You can precisely schedule tasks:
+  - Weekly on specific days (e.g., Every Wednesday)
+  - Monthly on specific dates (e.g., 15th of every month)
+  - Bi-annually (e.g., specific dates every 6 months)
+- 📁 **Seamless Subtask Management**: Parent tasks automatically transform into foldable directories. When collapsed, the parent intelligently displays a countdown badge for the most urgent hidden subtask.
+- ⏳ **Smart Countdowns**: Inactive future tasks are visually subdued and display a subtle countdown badge (e.g., "3 days left"), keeping you aware without causing anxiety.
+- 🔔 **Local Notifications**: Set specific reminder times (e.g., 21:00) for your tasks. The app leverages the native Browser Notification API to alert you precisely when it's time.
+- 👆 **Drag & Drop Reordering**: Long-press any task to trigger intuitive drag-and-drop reordering, complete with native haptic feedback on supported Android devices.
 
 ---
 
-*Enjoy your new flow! 保持专注，建立你的日常节律。*
+## 📱 How to Use (Best Practice)
+
+RoutineFlow embraces a **Mobile-First** design philosophy. For the optimal experience, install it as a Progressive Web App (PWA) on your mobile device:
+
+1. **Step 1**: Open the [Live Demo](https://jackyCongs.github.io/routineFlow/) in your mobile browser (Safari for iOS, Chrome for Android).
+2. **Step 2**: Tap the browser's Share/Menu button and select **"Add to Home Screen"**.
+3. **Step 3**: Launch RoutineFlow from your home screen for a full-screen, immersive app experience.
+
+### 💡 Note on Data Persistence
+- All task data is stored securely in your device's `localStorage`. Clearing your browser cache will remove your tasks.
+- Cloud synchronization is intentionally omitted in this version to guarantee absolute data privacy.
+
+---
+
+## 🛠 Tech Stack
+- **HTML5**: Semantic markup, Local Storage API, Notification API.
+- **Vanilla CSS**: CSS Custom Properties (Variables), Flexbox, modern gradients, and responsive design (zero CSS frameworks used).
+- **Vanilla JavaScript**: DOM manipulation, custom recurrence algorithms, and state management (zero JS frameworks used).
+- **SortableJS**: Smooth and responsive drag-and-drop interactions.
+
+---
+
+*Enjoy your flow. Stay focused and build your routines.*

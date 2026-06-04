@@ -205,7 +205,7 @@ function buildTaskElement(task) {
   if (!isActive) {
     countdownBadge = document.createElement('span');
     countdownBadge.className = 'countdown-badge';
-    countdownBadge.textContent = `距今还有 ${daysLeft} 天`;
+    countdownBadge.textContent = `${daysLeft} days left`;
   }
 
   // Folded subtask countdown badge
@@ -220,7 +220,7 @@ function buildTaskElement(task) {
     if (minDays !== null && minDays > 0) {
       foldedBadge = document.createElement('span');
       foldedBadge.className = 'countdown-badge folded-badge';
-      foldedBadge.textContent = `子任务最近还有 ${minDays} 天`;
+      foldedBadge.textContent = `Subtask in ${minDays} days`;
     }
   }
 
@@ -259,12 +259,12 @@ function buildTaskElement(task) {
 
   const editBtn = document.createElement('button');
   editBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
-  editBtn.title = '编辑任务';
+  editBtn.title = 'Edit Task';
   editBtn.addEventListener('click', (e) => { e.stopPropagation(); editTask(task.id); });
 
   const delBtn = document.createElement('button');
   delBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
-  delBtn.title = '删除任务';
+  delBtn.title = 'Delete Task';
   delBtn.addEventListener('click', (e) => { e.stopPropagation(); deleteTask(task.id); });
 
   actionsDiv.appendChild(editBtn);
@@ -352,7 +352,7 @@ function populateParentSelect() {
   select.innerHTML = '';
   const defaultOpt = document.createElement('option');
   defaultOpt.value = '';
-  defaultOpt.textContent = '无父任务（主任务）';
+  defaultOpt.textContent = 'No Parent (Root Task)';
   select.appendChild(defaultOpt);
   tasks
     .filter(t => t.parentId === null)
@@ -373,7 +373,7 @@ function addTask() {
   const recurrenceSelect = document.getElementById('recurrenceSelect');
 
   const title = titleInput.value.trim();
-  if (!title) return alert('请填写任务标题');
+  if (!title) return alert('Please enter a task title');
 
   const parentId = parentSelect.value || null;
   const recurrenceType = recurrenceSelect.value;
@@ -410,7 +410,7 @@ function toggleComplete(id, isChecked) {
 function deleteTask(id) {
   const task = tasks.find(t => t.id === id);
   if (!task) return;
-  if (!confirm('确定要删除「' + task.title + '」吗？')) return;
+  if (!confirm(`Are you sure you want to delete '${task.title}'?`)) return;
   // Recursively delete children
   const toDelete = [id];
   let i = 0;
@@ -455,7 +455,7 @@ function editTask(id) {
   document.getElementById('reminderTime').value = task.reminderTime || '';
 
   // Update modal title
-  document.querySelector('.modal-content h2').textContent = '编辑任务';
+  document.querySelector('.modal-content h2').textContent = 'Edit Task';
 
   const hasKids = hasChildren(id);
   if (hasKids) {
@@ -507,7 +507,7 @@ function closeModal() {
   document.getElementById('reminderToggle').checked = false;
   document.getElementById('reminderTime').value = '';
   document.getElementById('reminderTime').disabled = true;
-  document.querySelector('.modal-content h2').textContent = '新建任务';
+  document.querySelector('.modal-content h2').textContent = 'New Task';
 
   // Restore visibility of fields
   document.getElementById('parentSelect').style.display = 'block';
@@ -523,7 +523,7 @@ function handleSave() {
   const reminderTimeInput = document.getElementById('reminderTime');
 
   const title = titleInput.value.trim();
-  if (!title) return alert('请填写任务标题');
+  if (!title) return alert('Please enter a task title');
 
   const parentId = parentSelect.value || null;
   const recurrenceType = recurrenceSelect.value;
@@ -543,7 +543,7 @@ function handleSave() {
   const reminderEnabled = reminderToggle.checked;
   const reminderTime = reminderEnabled ? reminderTimeInput.value : null;
 
-  if (reminderEnabled && !reminderTime) return alert('请设置提醒时间');
+  if (reminderEnabled && !reminderTime) return alert('Please set a reminder time');
 
   if (editingTaskId) {
     const task = tasks.find(t => t.id === editingTaskId);
@@ -566,10 +566,9 @@ function handleSave() {
   closeModal();
 }
 
-// ==== Event Listeners ====
 document.getElementById('openModalBtn').addEventListener('click', () => {
   editingTaskId = null;
-  document.querySelector('.modal-content h2').textContent = '新建任务';
+  document.querySelector('.modal-content h2').textContent = 'New Task';
   openModal();
 });
 document.getElementById('cancelTaskBtn').addEventListener('click', closeModal);
@@ -634,8 +633,8 @@ function checkReminders() {
       saveTasks(tasks);
       // Send notification
       if ('Notification' in window && Notification.permission === 'granted') {
-        new Notification('RoutineFlow 提醒', {
-          body: '「' + task.title + '」还没有完成哦！',
+        new Notification('RoutineFlow Reminder', {
+          body: `'${task.title}' is pending!`,
           icon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✅</text></svg>'
         });
       }
@@ -651,7 +650,7 @@ function populateDays() {
   const hSelect = document.getElementById('halfYearlyDaySelect');
   let options = '';
   for (let i = 1; i <= 31; i++) {
-    options += `<option value="${i}">${i}日</option>`;
+    options += `<option value="${i}">${i}</option>`;
   }
   mSelect.innerHTML = options;
   hSelect.innerHTML = options;

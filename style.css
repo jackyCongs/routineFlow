@@ -22,7 +22,7 @@
   padding: 0;
 }
 
-/* ====== 防止横向溢出 ====== */
+/* ====== Prevent Horizontal Overflow ====== */
 html {
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
@@ -36,7 +36,7 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
-  padding-bottom: 6rem; /* 给 FAB 留空间 */
+  padding-bottom: 6rem; /* Space for FAB */
 }
 
 /* ====== Header ====== */
@@ -94,7 +94,7 @@ header.header h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;          /* 确保在所有内容之上 */
+  z-index: 9999;          /* Ensure on top of all content */
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
@@ -237,7 +237,7 @@ li.task-item {
   -webkit-touch-callout: none;
 }
 
-/* 激活状态 (Active): 到期或无周期，纯白高亮+彩色左边框，非常吸睛 */
+/* Active State: Due or one-off tasks, solid white, colored left border */
 li.task-item.active {
   background: #ffffff;
   border-left: 4px solid var(--color-primary);
@@ -245,7 +245,7 @@ li.task-item.active {
   transform: translateY(-1px);
 }
 
-/* 未激活状态 (Inactive): 未到期，透明底色融入背景，半透明，虚线框 */
+/* Inactive State: Future tasks, transparent background, dashed border */
 li.task-item.inactive {
   background: transparent;
   border: 1px dashed var(--color-border);
@@ -253,7 +253,7 @@ li.task-item.inactive {
   opacity: 0.55;
 }
 
-/* 倒计时徽章 */
+/* Countdown Badge */
 .countdown-badge {
   font-size: 0.75rem;
   color: hsl(35, 80%, 45%);
@@ -273,7 +273,7 @@ li.task-item.inactive {
   border: 1px solid hsl(15, 85%, 90%);
 }
 
-/* 折叠箭头 */
+/* Fold/Expand Arrow */
 .fold-arrow {
   font-size: 0.7rem;
   color: var(--color-muted);
