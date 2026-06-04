@@ -15,15 +15,34 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="theme-color" content="#edf2f7">
 
-    <link rel="stylesheet" href="style.css?v=11" />
+    <link rel="stylesheet" href="style.css?v=12" />
     <!-- SortableJS for drag-and-drop ordering -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <!-- Chart.js for statistics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
     <header class="header">
         <h1>RoutineFlow</h1>
     </header>
     <main class="main">
+        <!-- Tasks View -->
+        <section id="tasksView">
+            <div id="taskList"></div>
+        </section>
+
+        <!-- Statistics View -->
+        <section id="statsView" style="display: none;">
+            <div class="stats-card">
+                <h3>Last 7 Days Completion</h3>
+                <canvas id="completionChart"></canvas>
+            </div>
+            <div class="stats-card mt-4">
+                <h3>Top Tasks</h3>
+                <ul id="topTasksList" class="top-tasks-list"></ul>
+            </div>
+        </section>
+
         <!-- Floating Action Button -->
         <button id="openModalBtn" class="fab" aria-label="Add Task" title="Add Task">＋</button>
 
@@ -98,7 +117,17 @@
             <button id="a2hsInstallBtn" class="primary" style="display: none; width: auto; padding: 0.5rem 1rem;">Install</button>
           </div>
         </div>
-    </main>
-    <script src="app.js?v=11"></script>
+    
+    <nav class="bottom-nav">
+        <div class="bottom-nav-item active" data-tab="tasks">
+            <span class="nav-icon">📋</span>
+            <span class="nav-label">Tasks</span>
+        </div>
+        <div class="bottom-nav-item" data-tab="stats">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Stats</span>
+        </div>
+    </nav>
+    <script type="module" src="js/main.js?v=12"></script>
 </body>
 </html>
