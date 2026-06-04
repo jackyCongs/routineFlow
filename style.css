@@ -355,3 +355,67 @@ li.task-item.inactive {
   padding: 0.65rem 0.875rem;
   margin-bottom: 0.4rem;
 }
+
+/* ====== Add to Home Screen Prompt ====== */
+.a2hs-prompt {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--color-border);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem 1rem calc(1.5rem + env(safe-area-inset-bottom, 0));
+  z-index: 10000;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.a2hs-prompt:not([aria-hidden="true"]) {
+  transform: translateY(0);
+}
+
+.a2hs-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.a2hs-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.a2hs-text {
+  flex: 1;
+}
+
+.a2hs-text h3 {
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.a2hs-text p {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  line-height: 1.3;
+}
+
+.a2hs-close {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.2rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+}
