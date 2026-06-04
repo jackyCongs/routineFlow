@@ -1,5 +1,5 @@
 import { loadTasks, loadHistory, recycleCompletedTasks } from './store.js';
-import { renderTasks, handleSave, closeModal } from './tasks.js';
+import { renderTasks, handleSave, closeModal, openModal, setEditingTaskId } from './tasks.js';
 import { renderStats } from './stats.js';
 
 let currentTab = 'tasks';
@@ -59,11 +59,9 @@ function setupModalListeners() {
   const openModalBtn = document.getElementById('openModalBtn');
   if (openModalBtn) {
     openModalBtn.addEventListener('click', () => {
-      import('./tasks.js').then(module => {
-        module.editingTaskId = null;
-        document.querySelector('.modal-content h2').textContent = 'New Task';
-        module.openModal();
-      });
+      setEditingTaskId(null);
+      document.querySelector('.modal-content h2').textContent = 'New Task';
+      openModal();
     });
   }
   
@@ -164,5 +162,5 @@ function setupPWA() {
   }
 }
 
-// Boot the app
-document.addEventListener('DOMContentLoaded', initApp);
+// Boot the app directly (module scripts are deferred by default, DOM is already ready)
+initApp();

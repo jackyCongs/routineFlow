@@ -6,6 +6,9 @@ import {
 import { Task } from './store.js';
 
 export let editingTaskId = null;
+export function setEditingTaskId(id) {
+  editingTaskId = id;
+}
 
 // ==== Rendering ====
 export function buildTaskElement(task) {
