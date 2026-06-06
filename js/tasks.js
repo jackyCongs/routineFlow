@@ -132,7 +132,14 @@ export function buildTaskElement(task) {
     const subList = document.createElement('ul');
     subList.className = 'subtask-list';
     
-    const children = tasks.filter(t => t.parentId === task.id).sort((a, b) => a.order - b.order);
+    const children = tasks
+      .filter(t => {
+        if (t.parentId !== task.id) return false;
+        // Hide non-recurring children completed on a previous day
+        if (t.recurrence.type === 'none' && t.completedDate && !isToday(t.completedDate)) return false;
+        return true;
+      })
+      .sort((a, b) => a.order - b.order);
     children.forEach(child => subList.appendChild(buildTaskElement(child)));
     li.appendChild(subList);
   }
