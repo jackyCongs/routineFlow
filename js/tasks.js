@@ -145,10 +145,27 @@ export function renderTasks() {
   if (!container) return;
   container.innerHTML = '';
 
+  // Before filtering: if a parent task was auto-completed because all its children
+  // were done, but now all children will be hidden (completed non-recurring from a
+  // previous day), clear the parent's completedDate so it reverts to a standalone task.
+  tasks.forEach(t => {
+    if (hasChildren(t.id) && t.completedDate && !isToday(t.completedDate)) {
+      const children = tasks.filter(c => c.parentId === t.id);
+      const allChildrenHidden = children.every(c =>
+        c.recurrence.type === 'none' && c.completedDate && !isToday(c.completedDate)
+      );
+      if (allChildrenHidden) {
+        t.completedDate = null;
+        saveTasks(tasks);
+      }
+    }
+  });
+
   const visibleTasks = tasks.filter(t => {
     if (t.recurrence.type === 'none') {
       // Non-recurring: hide if completed on a previous day (done is done)
       // Show if not completed, or completed today (so user can still uncheck)
+      // But parent tasks whose children are all hidden should stay visible
       if (t.completedDate && !isToday(t.completedDate)) return false;
       return true;
     }
