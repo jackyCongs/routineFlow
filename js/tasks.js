@@ -146,7 +146,12 @@ export function renderTasks() {
   container.innerHTML = '';
 
   const visibleTasks = tasks.filter(t => {
-    if (t.recurrence.type === 'none') return true;
+    if (t.recurrence.type === 'none') {
+      // Non-recurring: hide if completed on a previous day (done is done)
+      // Show if not completed, or completed today (so user can still uncheck)
+      if (t.completedDate && !isToday(t.completedDate)) return false;
+      return true;
+    }
     return getDaysLeft(t.targetDate) <= 0 || (t.completedDate && isToday(t.completedDate)) || t.parentId !== null || hasChildren(t.id);
   });
 
