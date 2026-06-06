@@ -53,11 +53,24 @@ export function buildTaskElement(task) {
   titleSpan.className = 'task-title';
   titleSpan.textContent = task.title;
 
+  // Overdue types: weekly, monthly, half-yearly (NOT daily — missing one day resets naturally)
+  const needsOverdueWarning = ['weekly', 'monthly', 'half-yearly'].includes(task.recurrence.type);
+  const isOverdue = needsOverdueWarning && daysLeft < 0 && !(task.completedDate && isToday(task.completedDate));
+  const overdueDays = Math.abs(daysLeft);
+
   let countdownBadge = null;
-  if (!isActive) {
+  if (!isActive && !isOverdue) {
     countdownBadge = document.createElement('span');
     countdownBadge.className = 'countdown-badge';
     countdownBadge.textContent = `${daysLeft} days left`;
+  }
+
+  let overdueBadge = null;
+  if (isOverdue) {
+    li.classList.add('overdue');
+    overdueBadge = document.createElement('span');
+    overdueBadge.className = 'countdown-badge overdue-badge';
+    overdueBadge.textContent = `逾期 ${overdueDays} 天`;
   }
 
   let foldedBadge = null;
@@ -86,6 +99,7 @@ export function buildTaskElement(task) {
     
     titleContainer.appendChild(titleSpan);
     if (countdownBadge) titleContainer.appendChild(countdownBadge);
+    if (overdueBadge) titleContainer.appendChild(overdueBadge);
     if (foldedBadge) titleContainer.appendChild(foldedBadge);
     
     contentDiv.appendChild(titleContainer);
@@ -101,6 +115,7 @@ export function buildTaskElement(task) {
     
     titleContainer.appendChild(titleSpan);
     if (countdownBadge) titleContainer.appendChild(countdownBadge);
+    if (overdueBadge) titleContainer.appendChild(overdueBadge);
     
     contentDiv.appendChild(titleContainer);
   }

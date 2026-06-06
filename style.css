@@ -284,6 +284,18 @@ li.task-item.inactive {
   border: 1px solid hsl(15, 85%, 90%);
 }
 
+.overdue-badge {
+  color: hsl(0, 72%, 45%);
+  background: hsl(0, 72%, 95%);
+  border: 1px solid hsl(0, 72%, 88%);
+  font-weight: 600;
+}
+
+.task-item.overdue > .task-row {
+  border-left: 3px solid hsl(0, 72%, 65%);
+  padding-left: 0.6rem;
+}
+
 /* Fold/Expand Arrow */
 .fold-arrow {
   font-size: 0.7rem;
