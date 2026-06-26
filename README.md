@@ -4,6 +4,10 @@
 
 🌐 **Live Demo**: [https://jackycongs.github.io/routineFlow/](https://jackyCongs.github.io/routineFlow/)
 
+<p align="center">
+  <img src="assets/screenshot.jpg" alt="RoutineFlow Usage Screenshot" width="320" />
+</p>
+
 ---
 
 ## ✨ Key Features
