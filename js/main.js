@@ -4,7 +4,21 @@ import { renderStats } from './stats.js';
 
 let currentTab = 'tasks';
 
+function populateDays() {
+  const mSelect = document.getElementById('monthlyDaySelect');
+  const hSelect = document.getElementById('halfYearlyDaySelect');
+  if (mSelect && hSelect) {
+    let options = '';
+    for (let i = 1; i <= 31; i++) {
+      options += `<option value="${i}">${i}日</option>`;
+    }
+    mSelect.innerHTML = options;
+    hSelect.innerHTML = options;
+  }
+}
+
 function initApp() {
+  populateDays();
   loadTasks();
   loadHistory();
   recycleCompletedTasks();
@@ -76,13 +90,30 @@ function setupModalListeners() {
     recurrenceSelect.addEventListener('change', (e) => {
       const type = e.target.value;
       const detailsDiv = document.getElementById('recurrenceDetails');
-      if (type === 'none' || type === 'daily') {
+      const weeklyDay = document.getElementById('weeklyDaySelect');
+      const monthlyDay = document.getElementById('monthlyDaySelect');
+      const halfYearlyMonth = document.getElementById('halfYearlyMonthSelect');
+      const halfYearlyDay = document.getElementById('halfYearlyDaySelect');
+
+      if (detailsDiv && weeklyDay && monthlyDay && halfYearlyMonth && halfYearlyDay) {
+        // Hide all first
         detailsDiv.style.display = 'none';
-      } else {
-        detailsDiv.style.display = 'block';
-        document.getElementById('weeklyOptions').style.display = type === 'weekly' ? 'block' : 'none';
-        document.getElementById('monthlyOptions').style.display = type === 'monthly' ? 'block' : 'none';
-        document.getElementById('halfYearlyOptions').style.display = type === 'half-yearly' ? 'block' : 'none';
+        weeklyDay.style.display = 'none';
+        monthlyDay.style.display = 'none';
+        halfYearlyMonth.style.display = 'none';
+        halfYearlyDay.style.display = 'none';
+
+        if (type === 'weekly') {
+          detailsDiv.style.display = 'flex';
+          weeklyDay.style.display = 'block';
+        } else if (type === 'monthly') {
+          detailsDiv.style.display = 'flex';
+          monthlyDay.style.display = 'block';
+        } else if (type === 'half-yearly') {
+          detailsDiv.style.display = 'flex';
+          halfYearlyMonth.style.display = 'block';
+          halfYearlyDay.style.display = 'block';
+        }
       }
     });
   }
